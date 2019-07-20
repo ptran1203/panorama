@@ -34,18 +34,15 @@ def extract_feature(img):
     return EXTRACTOR.compute(img, kps)
 
 
-def match_feature(img1, img2):
+def match_feature(dsc1, dsc2):
     """
     Match two given descriptors
     re: 
     """
-    matches = MATCHER.knnMatch(img1.dsc, img2.dsc, k=2)
-    print(len(img1.kps), len(img2.kps))
+    matches = MATCHER.knnMatch(dsc1, dsc2, k=2)
     good_points = []
-    # TODO: good_matches only use for testing
-    good_matches=[]
+    # good_matches=[]
     for m1, m2 in matches:
-        # print(m1.distance - 0.85 * m2.distance)
         if m1.distance < 0.85 * m2.distance:
             good_points.append((m1.trainIdx, m1.queryIdx))
             # good_matches.append([m1])
