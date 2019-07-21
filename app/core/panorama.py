@@ -6,8 +6,6 @@ import core.constant as const
 from core.descriptor import ImageDescriptor
 
 
-
-
 class Panorama:
     def __init__(self, paths):
         """
