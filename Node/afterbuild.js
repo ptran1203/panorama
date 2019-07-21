@@ -20,7 +20,7 @@ const destAssets = './dist/assets';
 const dist = './dist';
 const public = './public/dist';
 
-const appDist = '../app/static/dist'
+const appDist = '../../app/static/dist'
 
 
 copyFunc(srcImages, destImages, function () {
