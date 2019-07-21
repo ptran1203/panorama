@@ -1,8 +1,6 @@
 import cv2
 import numpy as np
 import os
-
-
 import core.utils as utils
 import core.constant as const
 from core.descriptor import ImageDescriptor
@@ -93,5 +91,6 @@ class Panorama:
         if const.DEBUG:
             utils.show(panorama, "result_left")
 
-        cv2.imwrite(const.OUTPUT_DIR + "result.jpg", panorama)
-        return "/static/output/result.jpg"
+        filename = utils.make_file()
+        cv2.imwrite(const.OUTPUT_DIR + filename, panorama)
+        return "/static/output" + filename

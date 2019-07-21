@@ -3,6 +3,7 @@ import cv2
 import numpy as np
 import os
 import shutil
+import datetime
 EXTRACTOR = cv2.xfeatures2d.SIFT_create()
 MATCHER = cv2.BFMatcher()
 THRESHOLD = 0.85
@@ -69,3 +70,9 @@ def clean_folder(folder):
                 os.unlink(file_path)
         except Exception as e:
             print(e)
+
+def make_file():
+    now = datetime.datetime.now()
+    return "/r" + str(now
+        ).replace(" ","-").replace(":","-"
+        ).replace(".","-") + ".jpg"

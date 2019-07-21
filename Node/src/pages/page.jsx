@@ -162,7 +162,11 @@ window.renderForm = (dom, props) => {
         React.createElement((withStyles({
             imageResult: {
                 '& img': {
+<<<<<<< HEAD
                     width: 'auto',
+=======
+                    width: '100%',
+>>>>>>> d5f30c4086b050ec421c2ad4f48cf91c1b01d2f6
                     // maxHeight: '180px',
                     border: '1px solid #c4c4c4',
                     borderRadius: '5px',

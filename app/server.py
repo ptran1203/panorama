@@ -38,21 +38,28 @@ def upload_file():
     resp.status_code = 200
     resp.headers['Access-Control-Allow-Origin'] = '*'
     return resp
-    
+
+
+
 @app.route('/stitch', methods=['GET'])
 def stitch():
     if request.method == "GET":
-    # get uploaded filesp
+        # get uploaded filesp
         files = sorted(utils.files_in(__SAVED_DIR__), reverse=False)
         panorama = Panorama(files)
-        imgpath = panorama.stitch()
-        print(imgpath)
-        resp = make_response(json.dumps('/static/output/result.jpg'))
+        path = panorama.stitch()
+        resp = make_response(json.dumps(path))
         resp.status_code = 200
         resp.headers['Access-Control-Allow-Origin'] = '*'
         return resp
 
+if app.config["DEBUG"]:
+    @app.after_request
+    def after_request(response):
+        response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate, public, max-age=0"
+        response.headers["Expires"] = 0
+        response.headers["Pragma"] = "no-cache"
+        return response
 
+app.config["CACHE_TYPE"] = "null"
 app.run(debug = True)
-
-
