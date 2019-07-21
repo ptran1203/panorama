@@ -163,7 +163,7 @@ window.renderForm = (dom, props) => {
             imageResult: {
                 '& img': {
                     width: 'auto',
-                    maxHeight: '180px',
+                    // maxHeight: '180px',
                     border: '1px solid #c4c4c4',
                     borderRadius: '5px',
                 },
