@@ -1,0 +1,27 @@
+.page-header {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    box-sizing: border-box;
+    -webkit-transition: top 0.2s;
+    -moz-transition: top 0.2s;
+    transition: top 0.2s;
+
+  }
+  .page-header.off-canvas { top: -89px; }
+  .page-header.fixed {
+    top: 0;
+  }
+  
+  .content-up {
+      margin-top: 55px
+  }
+  .content-down {
+    margin-top: 0px
+}
+  #contentPanel{
+    -webkit-transition: margin 0.1s;
+    -moz-transition: margin 0.1s;
+    transition: margin 0.1s;
+  }
