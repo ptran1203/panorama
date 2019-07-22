@@ -20,6 +20,9 @@ class Panorama:
 
     @staticmethod
     def _generate_imgs(paths):
+        """
+        Generate ImageDescriptor from file paths
+        """
         return [
             ImageDescriptor(_) for _ in paths
         ]
@@ -73,13 +76,27 @@ class Panorama:
         # for img in imgs:
     
     def stitch(self):
+        """
+        Stitching images
+        Loop from the last img (right to left)
+        and stitch previous-panaroma to current img in loop
+        with homography of previous-img
+        eg: img1, img2, img3, img4 -> homographies h12, h23, h34
+        loop 1: stitch img3 and img4 with h34 -> panorama34
+        loop 2: stitch panorama34 and img 2 with h23 -> panorama234
+        loop3: stitch panorama234 and img1 with h12 -> panorama (result)
+        """
+        # start from the last img
         size = len(self.imgs) - 1
+        # warp perspective last-img with it's pre-img
         panorama = cv2.warpPerspective(self.imgs[size].img, 
             self.homographies[utils.key(size - 1)],
             (self.width, self.height))
         pre = self.imgs[size - 1]
+        # insert pre-img into panorama
         panorama[:pre.shape[0], :pre.shape[1]] = pre.img
         for i in range(size - 1, 0, -1):
+            # just repeat above step
             pre = self.imgs[i - 1]
             panorama = cv2.warpPerspective(panorama, 
             self.homographies[utils.key(i - 1)],
@@ -89,6 +106,7 @@ class Panorama:
         if const.DEBUG:
             utils.show(panorama, "result_left")
 
+        # make file name based on time to prevent flask-cache
         filename = utils.make_file()
         cv2.imwrite(const.OUTPUT_DIR + filename, panorama)
         return "/static/output" + filename

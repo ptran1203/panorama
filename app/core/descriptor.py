@@ -1,5 +1,6 @@
 import cv2
 
+# TODO: Is xfeatures2d working on Windows?
 sift = cv2.xfeatures2d.SIFT_create()
 
 class ImageDescriptor:

@@ -4,6 +4,7 @@ import numpy as np
 import os
 import shutil
 import datetime
+# TODO: Is xfeatures2d working on Windows?
 EXTRACTOR = cv2.xfeatures2d.SIFT_create()
 MATCHER = cv2.BFMatcher()
 THRESHOLD = 0.85
